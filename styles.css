@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    margin: auto;
+}
+
+th {
+    background-color: rgba(224, 212, 212, 0.452);
+    color: black;
+}
+
+tr th {
+    height: 50px;
+    width: 150px;
+    padding: 5px;
+}
+
+tr td {
+    height: 50px;
+    width: 150px;
+    padding: 5px;
+    background-color: antiquewhite;
+    text-align: center;
+}
