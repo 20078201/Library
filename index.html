@@ -7,22 +7,50 @@
     
     <link rel="stylesheet" href="styles.css">
     <script src="main.js" defer></script>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
     <title>Library</title>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Pages</th>
-                <th>Has book being read?</th>
-            </tr>
-        </thead>
-        <tbody data-book="Table" id="books">
-            
-        </tbody>
-        
-    </table>
+    <div class="container">
+        <header id="header" class="flex">
+            <div class="logo flex">
+                <!-- Can use an image/svg or fontawesome or boxicons -->
+                <i class="bx bx-code-block"></i>
+                <h1>Library</h1>
+            </div>
+
+            <button id="navbar-toggle" class="navbar-toggle"><i class="bx bx-menu"></i></button>
+
+            <nav id="navigation">
+                <ul class="primary-nav flex" data-visible="true">
+                    <li class="nav-item">
+                        <a href="#"><i class="bx-fw bx bx-home"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"><i class="bx-fw bx bx-id-card"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"><i class="bx-fw bx bx-cog"></i>Setting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"><i class="bx-fw bx bx-power-off"></i>Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <button data-book="add" id="add-book-btn"><i class="bx bx-book-add"></i></button>
+
+            <div class="card">
+                <h2 class="title">The Hobbit</h2>
+                <p class="author">JJ Reddick</p>
+                <p class="pages">256</p>
+                <button>READ</button>
+                <button class="remove">Remove</button>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
