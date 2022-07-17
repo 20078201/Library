@@ -59,17 +59,17 @@
             </div>
             <div class="content">
               <form class="form">
-                <div id="title" class="input">
+                <div class="input">
                   <label for="title">Book Title</label>
                   <input type="text" name="title" id="title" />
                 </div>
                 <hr />
-                <div id="author" class="input">
+                <div class="input">
                   <label for="author">Author</label>
                   <input type="text" name="author" id="author" />
                 </div>
                 <hr />
-                <div id="pages" class="input">
+                <div class="input">
                   <label for="pages">Pages</label>
                   <input
                     type="number"
@@ -80,18 +80,16 @@
                   />
                 </div>
                 <hr />
-                <div id="isRead" class="input">
+                <div class="input" id="isRead">
                   <span>Have you read this book before?</span>
                     
                   <div class="radio-buttons">
-                      <div class="option">
-                          <input type="radio" name="yes" id="yes" value="true" />
-                          <label for="yes">Yes</label>
-                      </div>
-                      <div class="option">
-                          <input type="radio" name="no" id="no" value="false" />
-                          <label for="no">No</label>
-                      </div>
+                      <input type="radio" name="isRead" id="yes" value="true" checked/>
+                      <label for="yes">Yes</label>
+
+                      <input type="radio" name="isRead" id="no" value="false" />
+                      <label for="no">No</label>
+    
                   </div>
                 </div>
                 <hr />

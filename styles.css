@@ -77,14 +77,42 @@ ul li {
     display: flex;
     flex-direction: column;
 
-    align-items: center;
-    justify-content: center;
     border-radius: 8px;
     aspect-ratio: 2/1.5;
     height: 200px;
     background-color: #ffffff;
     box-shadow: 2px 2px 5px #d9d9d9, -2px -2px 5px #ffffff;
+    padding: 10px;
+    gap: 5px;
 }
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-button {
+    flex-grow: 1;
+    font-size: 1.3rem;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.card-button.remove-book {
+    background-color: rgb(255, 0, 0);
+}
+
+.card [data-read='false'] {
+    background-color: rgba(199, 4, 4, 0.658);
+}
+
+.card [data-read='true'] {
+    background-color: green;
+}
+
 
 /* Form styling */
 #overlay {
@@ -118,8 +146,12 @@ ul li {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: blueviolet;
+}
+
+.header a > i {
+    font-size: 3rem;
 }
 
 
@@ -141,9 +173,8 @@ ul li {
     gap: 10px;
 }
 
-#isRead .radio-buttons {
-    display: flex;
-    gap: 30px;
+#no {
+    margin-left: 15px;
 }
 
 div.submit {
