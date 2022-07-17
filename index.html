@@ -1,56 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
     <title>Library</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header id="header" class="flex">
-            <div class="logo flex">
-                <!-- Can use an image/svg or fontawesome or boxicons -->
-                <i class="bx bx-code-block"></i>
-                <h1>Library</h1>
+      <header id="header" class="flex">
+        <div class="logo flex">
+          <!-- Can use an image/svg or fontawesome or boxicons -->
+          <i class="bx bx-code-block"></i>
+          <h1>Library</h1>
+        </div>
+
+        <button id="navbar-toggle" class="navbar-toggle">
+          <i class="bx bx-menu"></i>
+        </button>
+
+        <nav id="navigation">
+          <ul class="primary-nav flex" data-visible="true">
+            <li class="nav-item">
+              <a href="#"><i class="bx-fw bx bx-home"></i>Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#"><i class="bx-fw bx bx-id-card"></i>About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#"><i class="bx-fw bx bx-cog"></i>Setting</a>
+            </li>
+            <li class="nav-item">
+              <a href="#"><i class="bx-fw bx bx-power-off"></i>Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main-content">
+        <div class="addbook">
+          <a href="#overlay"><i class="bx bx-book-add"></i></a>
+        </div>
+        <div id="books" class="books"></div>
+
+        <div id="overlay" class="overlay">
+          <div class="wrapper">
+            <div class="header">
+              <h2 class="form-title">Please fill the form below</h2>
+              <a href="#"><i class="bx bx-window-close"></i></a>
             </div>
-
-            <button id="navbar-toggle" class="navbar-toggle"><i class="bx bx-menu"></i></button>
-
-            <nav id="navigation">
-                <ul class="primary-nav flex" data-visible="true">
-                    <li class="nav-item">
-                        <a href="#"><i class="bx-fw bx bx-home"></i>Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#"><i class="bx-fw bx bx-id-card"></i>About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#"><i class="bx-fw bx bx-cog"></i>Setting</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#"><i class="bx-fw bx bx-power-off"></i>Logout</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <main class="main-content">
-            <button data-book="add" id="add-book-btn"><i class="bx bx-book-add"></i></button>
-
-            <div class="card">
-                <h2 class="title">The Hobbit</h2>
-                <p class="author">JJ Reddick</p>
-                <p class="pages">256</p>
-                <button>READ</button>
-                <button class="remove">Remove</button>
+            <div class="content">
+              <form class="form">
+                <div id="title" class="input">
+                  <label for="title">Book Title</label>
+                  <input type="text" name="title" id="title" />
+                </div>
+                <hr />
+                <div id="author" class="input">
+                  <label for="author">Author</label>
+                  <input type="text" name="author" id="author" />
+                </div>
+                <hr />
+                <div id="pages" class="input">
+                  <label for="pages">Pages</label>
+                  <input
+                    type="number"
+                    min="1"
+                    placeholder="pages"
+                    name="pages"
+                    id="pages"
+                  />
+                </div>
+                <hr />
+                <div id="isRead" class="input">
+                  <span>Have you read this book before?</span>
+                    
+                  <div class="radio-buttons">
+                      <div class="option">
+                          <input type="radio" name="yes" id="yes" value="true" />
+                          <label for="yes">Yes</label>
+                      </div>
+                      <div class="option">
+                          <input type="radio" name="no" id="no" value="false" />
+                          <label for="no">No</label>
+                      </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="submit">
+                  <button class="button" type="button" data-book="add">Submit</button>
+                </div>
+              </form>
             </div>
-        </main>
+          </div>
+        </div>
+      </main>
     </div>
-</body>
+  </body>
 </html>

@@ -1,48 +1,63 @@
 let myLibrary = []
 
-function Book(title, author, pages, isRead) {
-    //The constructor
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.isRead = isRead
-}
+const Book = (title, author, pages, isRead) => {
 
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} and ${this.isRead}`
+    const info = () => {
+        return `${title} by ${author}, ${pages} and ${isRead}`
+    }
+
+    return {title, author, pages, isRead, info}
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
 
-const hobbit = new Book('The Hobbit', "JJ Reddick", "256", "Read")
-const fastAndFurious = new Book('Fast and Furious', "Vin diesel", "256", "Read")
-const crawlDad = new Book('Where The Crawl Dad Sing', "Veuil Owens", "200", "Read")
-const warHammer = new Book('War Hammer - Seige of Tower', "Kurt James", "556", "Not Read")
-const harryPotter = new Book('Harry Potter', "R,R Martin", "656", "Not Read")
-const powerRanger = new Book('Power Ranger - Jump Force', "Rick Sanzesh", "156", "Not Read")
-const bleach = new Book('Bleach', "Kubo", "1000", "Read")
-const naruto = new Book('Naruto', "Abe Shinji", "256", "Read")
-const vigor = new Book('Vigor', "JJ Martin", "456", "Read")
-const musashi = new Book('The last bar', "AJ Martin", "377", "Read")
-
-myLibrary.push(hobbit, fastAndFurious, crawlDad, warHammer, harryPotter, powerRanger, bleach, naruto, vigor, musashi)
-
 const bookTable = document.querySelector('#books')
+const addBookBtn = document.querySelector('[data-book="add"]')
 
-for (const key in myLibrary) {
-    const row = document.createElement('tr')
-    const book = myLibrary[key]
-    for (const property in book) {
-        if (book.hasOwnProperty(property)) {
-            const td = document.createElement('td')
-        td.textContent = book[property]
-        row.append(td)
-        }   
+function createBookDiv(bookObj) {
+    const container = document.createElement('div')
+    container.classList.add('card')
+    const title = document.createElement('h2')
+    title.textContent = bookObj.title
+    const author = document.createElement('p')
+    author.textContent = bookObj.author
+    const bookLength = document.createElement('p')
+    bookLength.textContent = bookObj.pages
+    const hasRead = document.createElement('button')
+    if(bookObj.isRead){
+        hasRead.textContent = "book has been read"
+    } else if (!bookObj.isRead) {
+        hasRead.textContent = "book has not been finished"
     }
-    bookTable.append(row)
+    const removeBook = document.createElement('button')
+    removeBook.textContent = 'REMOVE'
+
+    container.append(title, author, bookLength, hasRead, removeBook)
+
+    return container
 }
+
+addBookBtn.addEventListener('click', () => {
+    const title = document.querySelector('#title')
+    const author = document.querySelector('#author')
+    const pages = document.querySelector('#pages')
+    const isRead = document.querySelectorAll('input[type="radio"]')
+    if (isRead.value === 'true' && isRead.checked) {
+        isRead.textContent = 'This book has been read'
+    } else if (isRead.value = 'false' && isRead.checked) {
+        isRead.textContent = 'This book has not been read yet'
+    }
+
+    const userBook = createBookDiv(Book(title.textContent, author.textContent, pages.textContent, 
+        isRead.textContent)) 
+    
+    myLibrary.push(userBook)
+    bookTable.append(userBook)
+})
+
+
 
 
 
