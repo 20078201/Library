@@ -2,25 +2,99 @@ let myLibrary = []
 const bookTable = document.querySelector('#books')
 const addBookBtn = document.querySelector('[data-book="add"]')
 
-const Book = (title, author, pages, isRead) => {
-
-    const info = () => {
-        return `${title} by ${author}, ${pages} and ${isRead}`
+// Book Class
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.isRead = isRead
     }
 
-    return {title, author, pages, isRead, info}
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} and ${this.isRead}`
+    }
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book)
+// Library Class
+class Library {
+    constructor () {
+    }
+
+    addBookToLibrary(book) {
+        this.myLibrary.push(book)
+    }
+    
+    remove(array, ...inputs) {
+        return array.filter(v => {
+            return !inputs.includes(v)
+        })
+    }
+
+    createBook(bookObj) {
+        const container = document.createElement('div')
+        container.classList.add('card')
+    
+        const cardHeader = document.createElement('div')
+        cardHeader.classList.add('card-header')
+    
+        const title = document.createElement('h2')
+        title.textContent = bookObj.title
+    
+        const author = document.createElement('p')
+        author.textContent = bookObj.author
+    
+        const bookLength = document.createElement('p')
+        bookLength.textContent = bookObj.pages
+    
+        cardHeader.append(title)
+        cardHeader.append(author)
+        cardHeader.append(bookLength)
+    
+        // hasRead
+        const hasRead = document.createElement('button')
+        hasRead.classList.add('card-button')
+        if (bookObj.isRead === 'true'){
+            hasRead.textContent = "Read"
+            hasRead.setAttribute('data-read', 'true')
+        } else if (bookObj.isRead === 'false') {
+            hasRead.textContent = "Not Read"
+            hasRead.setAttribute('data-read', 'false')
+        }
+        
+        // has read button click event listener
+        hasRead.addEventListener('click', () => {
+            const read = hasRead.getAttribute('data-read')
+            if (read === 'true') {
+                hasRead.textContent = "Not Read"
+                hasRead.setAttribute("data-read", false)
+            } else if (read === 'false') {
+                hasRead.textContent = "Read"
+                hasRead.setAttribute("data-read", true)
+            }
+        })
+    
+        // Remove book button element
+        const removeBook = document.createElement('button')
+        removeBook.textContent = 'REMOVE'
+        removeBook.classList.add('card-button')
+        removeBook.classList.add('remove-book')
+    
+        removeBook.addEventListener('click', () => {
+            // Remove element from array
+            myLibrary = Library.prototype.remove(myLibrary, bookObj)
+            // update
+            update()
+        })
+    
+        container.append(cardHeader, hasRead, removeBook)
+    
+        return container
+    }
+    
 }
 
-function remove(array, ...inputs) {
-    return array.filter(v => {
-        return !inputs.includes(v)
-    })
-}
-
+// update the webpage with books 
 function update() {
     // Clear the screen
     while (bookTable.firstChild) {
@@ -29,72 +103,12 @@ function update() {
     
     // remake the cards and display it on the screen
     myLibrary.forEach(book => {
-        const newCard = createBookDiv(book)
+        const newCard = Library.prototype.createBook(book)
         bookTable.append(newCard)
     })
 }
 
-function createBookDiv(bookObj) {
-    const container = document.createElement('div')
-    container.classList.add('card')
-
-    const cardHeader = document.createElement('div')
-    cardHeader.classList.add('card-header')
-
-    const title = document.createElement('h2')
-    title.textContent = bookObj.title
-
-    const author = document.createElement('p')
-    author.textContent = bookObj.author
-
-    const bookLength = document.createElement('p')
-    bookLength.textContent = bookObj.pages
-
-    cardHeader.append(title)
-    cardHeader.append(author)
-    cardHeader.append(bookLength)
-
-    // hasRead
-    const hasRead = document.createElement('button')
-    hasRead.classList.add('card-button')
-    if (bookObj.isRead === 'true'){
-        hasRead.textContent = "Read"
-        hasRead.setAttribute('data-read', 'true')
-    } else if (bookObj.isRead === 'false') {
-        hasRead.textContent = "Not Read"
-        hasRead.setAttribute('data-read', 'false')
-    }
-    
-    hasRead.addEventListener('click', () => {
-        const read = hasRead.getAttribute('data-read')
-        if (read === 'true') {
-            hasRead.textContent = "Not Read"
-            hasRead.setAttribute("data-read", false)
-        } else if (read === 'false') {
-            hasRead.textContent = "Read"
-            hasRead.setAttribute("data-read", true)
-        }
-    })
-
-    
-    const removeBook = document.createElement('button')
-    removeBook.textContent = 'REMOVE'
-    removeBook.classList.add('card-button')
-    removeBook.classList.add('remove-book')
-
-    removeBook.addEventListener('click', () => {
-        // Remove element from array
-        myLibrary = remove(myLibrary, bookObj)
-        // update
-        update()
-    })
-
-    container.append(cardHeader, hasRead, removeBook)
-
-
-    return container
-}
-
+// event listener for adding book button
 addBookBtn.addEventListener('click', () => {
     const title = document.querySelector('#title')
     const author = document.querySelector('#author')
@@ -119,7 +133,7 @@ addBookBtn.addEventListener('click', () => {
 
 
     // Create new book object
-    const newBook = Book(title.value, author.value, pages.value, activeRadioButton.value)
+    const newBook = new Book(title.value, author.value, pages.value, activeRadioButton.value)
     myLibrary.push(newBook)
 
     // Reset the inputs
@@ -129,9 +143,6 @@ addBookBtn.addEventListener('click', () => {
 
     update()
 })
-
-
-
 
 
 
