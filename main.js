@@ -21,17 +21,17 @@ class Library {
     constructor () {
     }
 
-    addBookToLibrary(book) {
+    addBookToLibrary = (book) => {
         this.myLibrary.push(book)
     }
     
-    remove(array, ...inputs) {
+    remove = (array, ...inputs) => {
         return array.filter(v => {
             return !inputs.includes(v)
         })
     }
 
-    createBook(bookObj) {
+    createBook = (bookObj) => {
         const container = document.createElement('div')
         container.classList.add('card')
     
