@@ -68,8 +68,10 @@ function createBookDiv(bookObj) {
     hasRead.addEventListener('click', () => {
         const read = hasRead.getAttribute('data-read')
         if (read === 'true') {
+            hasRead.textContent = "Not Read"
             hasRead.setAttribute("data-read", false)
         } else if (read === 'false') {
+            hasRead.textContent = "Read"
             hasRead.setAttribute("data-read", true)
         }
     })
